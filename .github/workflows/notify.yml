@@ -3,9 +3,6 @@ name: Notify
 on:
   workflow_call:
     inputs:
-      #checks_result:
-      #  required: true
-      #  type: string
       build_result:
         required: true
         type: string

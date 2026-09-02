@@ -5,8 +5,7 @@ on:
     branches: [main]
  
 jobs:
-   build:
-    needs: [checks]
+  build:
     runs-on: ubuntu-latest
     outputs:
       image_sha: ${{ steps.build-push.outputs.image_sha }}
@@ -55,11 +54,10 @@ jobs:
  
   notify:
     name: Notify JOB
-    needs: [checks, deploy, build]
+    needs: [deploy, build]
     if: always()
     uses: ./.github/workflows/notify.yml
     with:
-      checks_result: ${{ needs.checks.result }}
       deploy_result: ${{ needs.deploy.result }}
       build_result: ${{ needs.build.result }} 
     secrets:
